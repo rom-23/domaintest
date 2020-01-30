@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+    <section class="articles">
+        <div class="container" style="padding: 2em;">
+            <p>enter an url to display ( sans mettre d'espaces au debut ... ): </p>
+            <input type="text" id="url" placeholder="http://www.xvideos.com">
+            <button id="url2img">with Ajax !</button>
+            <span id="msg" style="color:red; font-size:18px;"></span> <br/>
+            <img src="">
+        </div>
+        {% for article in articles %}
+            <article>
+                <div class="content">
+                    <p>Url to screenshot : {{ article.content | raw }}</p>
+                    <p><a href="{{ path('blog.showBundle', {id:article.id}) }}">with SfBundle</a></p>
+                    <p><a href="{{ path('blog.showGoogle', {id:article.id}) }}">with google !</a></p>
+                    <p><a href="{{ path('blog.showIframe', {id:article.id}) }}">with Iframe !</a></p>
+                </div>
+
+            </article>
+        {% endfor %}
+    </section>
+{% endblock %}
+{% block javascripts %}
+    <script>
+        $(function () {
+            $('#url2img').click(function () {
+                $("#msg").html("Loading Image Preview Please Wait..");
+                $("img").attr('src', "");
+                var url = $("#url").val();
+                $.ajax({
+                    url: 'https://www.googleapis.com/pagespeedonline/v2/runPagespeed?url=' + url + '&screenshot=true',
+                    context: this,
+                    type: 'GET',
+                    dataType: 'json',
+                    timeout: 90000,
+                    success: function (result) {
+                        var imgData = result.screenshot.data.replace(/_/g, '/').replace(/-/g, '+');
+                        $("img").attr('src', 'data:image/jpeg;base64,' + imgData);
+                        $("#msg").html('');
+                    },
+                    error: function (e) {
+                        $("#msg").html("Error to fetch image preview");
+                    }
+                });
+
+            });
+
+        });
+    </script>
+{% endblock %}
