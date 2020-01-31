@@ -6,11 +6,14 @@ use App\Entity\Article;
 use App\Repository\ArticleRepository;
 use Exception;
 use Knp\Snappy\Image;
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\BrowserKit\HttpBrowser;
+use Symfony\Component\HttpClient\HttpClient;
 
 class BlogController extends AbstractController
 
@@ -27,7 +30,8 @@ class BlogController extends AbstractController
             'articles' => $articles
         ]);
     }
-  /**
+
+    /**
      * @Route("/blog/iframe/{id}", name="blog.showIframe")
      * @param Article $article
      * @return Response
@@ -42,7 +46,7 @@ class BlogController extends AbstractController
         ]);
     }
 
-     /**
+    /**
      * @Route("/blog/bundle/{id}", name="blog.showBundle")
      * @param Article $article
      * @param Image $knpSnappy
@@ -77,6 +81,7 @@ class BlogController extends AbstractController
     public function showGoogle(Article $article)
     {
         $siteURL = $article->getContent();
+
         if (filter_var($siteURL, FILTER_VALIDATE_URL)) {
             $googlePagespeedData = file_get_contents("https://www.googleapis.com/pagespeedonline/v2/runPagespeed?url=$siteURL&screenshot=true");
             $googlePagespeedData = json_decode($googlePagespeedData, true);
@@ -87,9 +92,25 @@ class BlogController extends AbstractController
                 'urlToScreen' => "",
                 'screenSh' => $screenshot
             ]);
-        }else{
+        } else {
             return null;
         }
+    }
+
+    /**
+     * @Route("/blog/browser/{id}", name="blog.showBrowser")
+     * @param Article $article
+     * @return Response
+     */
+    public function showBrowser(Article $article)
+    {
+        $browser = new HttpBrowser(HttpClient::create());
+        $browser->request('GET', $article->getContent());
+//        return $this->render('blog/show.html.twig', [
+//            'urlToScreen' => "",
+//            'screenSh' => new Response($browser->getResponse())
+//        ]);
+return new Response($browser->getResponse());
     }
 
     /**

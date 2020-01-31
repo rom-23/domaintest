@@ -4,6 +4,9 @@
 
 {% block body %}
     <section class="articles">
+        <div class="container" style="padding: 4em;">
+            <a href="https://github.com/rom-23/domaintest">Github Code source</a>
+        </div>
         <div class="container" style="padding: 2em;">
             <p>enter an url to display ( sans mettre d'espaces au debut ... ): </p>
             <input type="text" id="url" placeholder="http://www.xvideos.com">
@@ -18,6 +21,7 @@
                     <p><a href="{{ path('blog.showBundle', {id:article.id}) }}">with SfBundle</a></p>
                     <p><a href="{{ path('blog.showGoogle', {id:article.id}) }}">with google !</a></p>
                     <p><a href="{{ path('blog.showIframe', {id:article.id}) }}">with Iframe !</a></p>
+                    <p><a href="{{ path('blog.showBrowser', {id:article.id}) }}">with Browser !</a></p>
                 </div>
 
             </article>
