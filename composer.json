@@ -7,6 +7,7 @@
         "ext-iconv": "*",
         "fzaninotto/faker": "^1.9",
         "knplabs/knp-snappy-bundle": "^1.7",
+        "mikehaertl/phpwkhtmltopdf": "^2.4",
         "sensio/framework-extra-bundle": "^5.1",
         "symfony/asset": "4.4.*",
         "symfony/browser-kit": "4.4.*",

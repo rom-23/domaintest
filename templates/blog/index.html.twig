@@ -5,23 +5,25 @@
 {% block body %}
     <section class="articles">
         <div class="container" style="padding: 4em;">
-            <a href="https://github.com/rom-23/domaintest">Github Code source</a>
+{#            <a href="https://github.com/rom-23/domaintest">Github Code source</a>#}
         </div>
         <div class="container" style="padding: 2em;">
             <p>enter an url to display ( sans mettre d'espaces au debut ... ): </p>
             <input type="text" id="url" placeholder="http://www.xvideos.com">
             <button id="url2img">with Ajax !</button>
-            <span id="msg" style="color:red; font-size:18px;"></span> <br/>
+            <span id="msg" style="color:red; font-size:12px;"></span> <br/>
             <img src="">
         </div>
         {% for article in articles %}
             <article>
                 <div class="content">
-                    <p>Url to screenshot : {{ article.content | raw }}</p>
-                    <p><a href="{{ path('blog.showBundle', {id:article.id}) }}">with SfBundle</a></p>
-                    <p><a href="{{ path('blog.showGoogle', {id:article.id}) }}">with google !</a></p>
-                    <p><a href="{{ path('blog.showIframe', {id:article.id}) }}">with Iframe !</a></p>
-                    <p><a href="{{ path('blog.showBrowser', {id:article.id}) }}">with Browser !</a></p>
+                    <p>Url : {{ article.content | raw }}</p>
+                    <p><a href="{{ path('blog.showBundle', {id:article.id}) }}">Screenshot Me</a></p>
+{#                    <p><a href="{{ path('blog.showGoogle', {id:article.id}) }}">with google !</a></p>#}
+{#                    <p><a href="{{ path('blog.showIframe', {id:article.id}) }}">with Iframe !</a></p>#}
+{#                    <p><a href="{{ path('blog.showBrowser', {id:article.id}) }}">with Browser !</a></p>#}
+{#                    <p><a href="{{ path('blog.showBro', {id:article.id}) }}">with Bro !</a></p>#}
+{#                    <p><a href="{{ path('blog.showhttp', {id:article.id}) }}">with HTTP !</a></p>#}
                 </div>
 
             </article>

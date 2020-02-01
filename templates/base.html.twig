@@ -11,30 +11,19 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     {% block stylesheets %}
         <style>
-            .thumbnail iframe {
-                width: 1200px;
-                height: 900px;
-            }
-
             .thumbnail {
+                margin-top: 2em;
                 position: relative;
-                -ms-zoom: 0.25;
-                -moz-transform: scale(0.25);
+                -ms-zoom: 0.20;
+                -moz-transform: scale(0.20);
                 -moz-transform-origin: 0 0;
-                -o-transform: scale(0.25);
+                -o-transform: scale(0.20);
                 -o-transform-origin: 0 0;
-                -webkit-transform: scale(0.25);
+                -webkit-transform: scale(0.20);
                 -webkit-transform-origin: 0 0;
             }
-
-            .thumbnail:after {
-                content: "";
-                display: block;
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
+            .thumbnail:hover{
+                cursor: pointer;
             }
         </style>
     {% endblock %}
