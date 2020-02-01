@@ -44,12 +44,39 @@
         </ul>
     </div>
 </nav>
-<div class="container">
+<div class="container-fluid">
     {% block body %}
 
     {% endblock %}
 </div>
+{% block javascripts %}
+    <script>
+        $(function () {
+            $("#url2img").click(function () {
+                $("#msg").html("Loading Image..");
+                $("#img").attr('src', "");
+                var url = "http://"+$("#url").val();
+                $.ajax({
+                    url: 'https://www.googleapis.com/pagespeedonline/v2/runPagespeed?url=' + url + '&screenshot=true',
+                    context: this,
+                    type: 'GET',
+                    dataType: 'json',
+                    timeout: 90000,
+                    success: function (result) {
+                        var imgData = result.screenshot.data.replace(/_/g, '/').replace(/-/g, '+');
+                        $("img").attr('src', 'data:image/jpeg;base64,' + imgData);
+                        $("#msg").html('');
+                    },
+                    error: function (e) {
+                        $("#msg").html("Error to fetch image preview");
+                    }
+                });
 
-{% block javascripts %}{% endblock %}
+            });
+
+        });
+    </script>
+{% endblock %}
+
 </body>
 </html>

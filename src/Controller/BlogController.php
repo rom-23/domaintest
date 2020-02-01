@@ -60,6 +60,7 @@ class BlogController extends AbstractController
      */
     public function showBundle(Article $article, Image $knpSnappy)
     {
+        $urlToScreen=$article->getContent();
         // Get snappy.image service
         $imageGenerator = $knpSnappy;
         $imageGenerator->setOption('height', 1024);
@@ -78,7 +79,8 @@ class BlogController extends AbstractController
         //$response = new BinaryFileResponse($filepath);
         //$response->setContentDisposition(ResponseHeaderBag::DISPOSITION_INLINE);
         return $this->render('blog/show.html.twig', [
-                'test' => $filepath
+                'test' => $filepath,
+            'urlToScreen'=>$urlToScreen
             ]);
     }
 
