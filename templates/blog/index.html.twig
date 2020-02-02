@@ -4,35 +4,37 @@
 
 {% block body %}
     <section>
-        <div class="container" style="margin-top: 3em;">
+        <div class="container mt-5">
             <div class="row">
                 <div class="col-md-8">
-                    <table class="table table-hover">
+                    <table class="table table-hover table-sm">
+                        <thead>
                         <th>Domains Urls </th>
+                        <th>Actions </th>
+                        </thead>
                         {% for article in articles %}
                         <tr>
                             <td>{{ article.content | raw }}</td>
-                            <td><a class="btn btn-success btn-small" id="screen" href="{{ path('blog.showBundle', {id:article.id}) }}">jpg</a></td>
-                            {% endfor %}
+                            <td><a class="btn btn-success btn-sm" id="screen" href="{{ path('blog.showBundle', {id:article.id}) }}">edit</a>
+                            <a class="btn btn-success btn-sm" id="displayJpg" href="{{ path('blog.openJpg', {id:article.id}) }}">open jpg</a>
+                            </td>
                         </tr>
+                        {% endfor %}
                     </table>
                 </div>
                 <div class="col-md-4">
-                    <div class="container" style="padding:1em;background: rgba(222,222,222,0.88);">
-                        <p>enter domain( sans mettre d'espaces au debut ): </p>
+                    <div class="container p-3" style="background: rgba(230,230,230,0.7);">
+                        <p>enter domain name (sans espaces au debut): </p>
                         <input class="form-control" type="text" id="url" placeholder="xvideos.com">
-                        <span id="msg" style="color:red; font-size:12px;"></span> <br/>
-                        <img src="" style="padding: 1em;">
-                        <div class="container">
-                            <button id="url2img" class="btn btn-success btn-small">Ajax</button>
+                        <span id="msg" class="text-danger"></span> <br/>
+                        <img class="img-fluid" alt="" src="">
+                        <div class="container text-center pt-3">
+                            <button id="url2img" class="btn btn-success btn-sm">Ajax</button>
                         </div>
                     </div>
-
-                    <p><a href="https://github.com/rom-23/domaintest">Github Code source</a></p>
+                    <p class="text-center pt-5"><a href="https://github.com/rom-23/domaintest">Github Code source</a></p>
                 </div>
             </div>
-
-
         </div>
     </section>
 
