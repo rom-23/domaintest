@@ -8,6 +8,7 @@ use Exception;
 use Knp\Snappy\Image;
 use mikehaertl\wkhtmlto\Image as Images;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -72,6 +73,34 @@ class BlogController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/blog/quick", name="blog.showQuick")
+     * @param Request $request
+     * @param Image $knpSnappy
+     * @return Response
+     * @throws Exception
+     */
+    public function showQuick(Request $request, Image $knpSnappy)
+    {
+       // $request = $this->getRequest();
+        $data = $request->request->get('search');
+        //dd($data);
+        $knpSnappy->setOption('height', 1024);
+        $knpSnappy->setOption('width', 800);
+        $knpSnappy->setOption('quality', 50);
+        $knpSnappy->setOption('disable-javascript', false);
+        //$imageGenerator->setOption('disable-local-file-access', true);
+        //$imageGenerator->setOption('disable-smart-width', false);
+        //$imageGenerator->setOption('stop-slow-scripts', true);
+        //$imageGenerator->setOption('crop-h', 100);
+        //$imageGenerator->setOption('crop-y', 100);
+        $filepath = 'images/tempImgFile.jpg';
+        $knpSnappy->generate($data, $filepath, [], true);
+        //$size = getimagesize('images/tempImgFile.jpg');
+        return $this->render('blog/quick.html.twig', [
+            'urlToScreen' => $filepath
+        ]);
+    }
     /**
      * @Route("/blog/openJpg/{id}", name="blog.openJpg")
      * @param Article $article

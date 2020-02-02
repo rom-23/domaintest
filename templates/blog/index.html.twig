@@ -9,14 +9,14 @@
                 <div class="col-md-8">
                     <table class="table table-hover table-sm">
                         <thead>
-                        <th>Domains Urls </th>
+                        <th>Domains List </th>
                         <th>Actions </th>
                         </thead>
                         {% for article in articles %}
                         <tr>
                             <td>{{ article.content | raw }}</td>
                             <td><a class="btn btn-success btn-sm" id="screen" href="{{ path('blog.showBundle', {id:article.id}) }}">edit</a>
-                            <a class="btn btn-success btn-sm" id="displayJpg" href="{{ path('blog.openJpg', {id:article.id}) }}">open jpg</a>
+{#                            <a class="btn btn-success btn-sm" id="displayJpg" href="{{ path('blog.openJpg', {id:article.id}) }}">open jpg</a>#}
                             </td>
                         </tr>
                         {% endfor %}
@@ -24,15 +24,28 @@
                 </div>
                 <div class="col-md-4">
                     <div class="container p-3" style="background: rgba(230,230,230,0.7);">
-                        <p>enter domain name (sans espaces au debut): </p>
+                        <p>Entrez une Url (sans espaces au debut): </p>
                         <input class="form-control" type="text" id="url" placeholder="xvideos.com">
                         <span id="msg" class="text-danger"></span> <br/>
                         <img class="img-fluid" alt="" src="">
                         <div class="container text-center pt-3">
-                            <button id="url2img" class="btn btn-success btn-sm">Ajax</button>
+                            <button id="url2img" class="btn btn-success btn-sm">With Ajax</button>
                         </div>
                     </div>
-                    <p class="text-center pt-5"><a href="https://github.com/rom-23/domaintest">Github Code source</a></p>
+                    <div class="container p-5">
+
+                    </div>
+                    <div class="container p-3" style="background: rgba(230,230,230,0.7);">
+                        <p>Entrer une Url :</p>
+                    <form method="post" action="{{ path('blog.showQuick')}}">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="xvideos.com" name ="search">
+                         <div class="container text-center pt-3">
+                            <button type="submit" class="btn btn-success btn-sm">With Symfony</button>
+                            </div>
+                        </div>
+                    </form>
+                    </div>
                 </div>
             </div>
         </div>
