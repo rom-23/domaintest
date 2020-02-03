@@ -20,6 +20,9 @@
                 width: 768px;
                 height: 650px;
             }
+            .hiddenScreen{
+                display: none;
+            }
         </style>
     {% endblock %}
 </head>
@@ -47,6 +50,9 @@
 {% block javascripts %}
     <script>
         $(function () {
+            $("#showMe").click(function () {
+                $( ".hiddenScreen" ).toggle()
+            });
             $("#url2img").click(function () {
                 $("#msg").html("Loading Image..");
                 $("#img").attr('src', "");

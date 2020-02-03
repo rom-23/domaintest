@@ -1,29 +1,30 @@
 {% extends 'base.html.twig' %}
 {% block body %}
     <div class="container">
-<div class="row">
-    <div class="col-md-4">
-        <div class="card-body">
-            <h5 class="card-title text-primary">
-                Domain edition
-            </h5>
-            <p class="card-text">Domain name : {{ description.content }}</i></p>
-            <p class="card-text">Description : {{ description.title }}</i></p>
-            <p class="card-text">Created at : {{ description.createdAt | date('d/m/Y a H:i')}}</i></p>
-        </div>
-
-    </div>
-    <div class="col-md-8">
-        <div class="container" style="padding: 2em;">
-        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card-body">
+                    <h5 class="card-title text-primary">
+                        Domain edition
+                    </h5>
+                    <p class="card-text">Domain name : {{ description.content }}</i></p>
+                    <p class="card-text">Description : {{ description.title }}</i></p>
+                    <p class="card-text">Created at : {{ description.createdAt | date('d/m/Y a H:i') }}</i></p>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="container" style="padding: 2em;">
+                </div>
                 <div class="container">
                     <a href="{{ path('blog.openJpg', {id:description.id}) }}"><img class="img-thumbnail" src="{{ asset(test) }}" alt=""/></a>
                 </div>
-    </div>
-</div>
-
-
-
+                <div class="container pt-5">
+                    <p>Afficher / Masquer le screenshot : </p>
+                    <p><a class="btn btn-primary btn-sm" href="#" id="showMe">Afficher / Masquer</a></p>
+                    <img class="img-thumbnail hiddenScreen" src="{{ asset(test) }}" alt=""/>
+                </div>
+            </div>
+        </div>
     </div>
 
 {% endblock %}
