@@ -2,7 +2,7 @@
 {% block body %}
     <div class="container">
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-4">
         <div class="card-body">
             <h5 class="card-title text-primary">
                 Domain edition
@@ -13,22 +13,12 @@
         </div>
 
     </div>
-    <div class="col-md-6">
+    <div class="col-md-8">
         <div class="container" style="padding: 2em;">
         </div>
                 <div class="container">
                     <a href="{{ path('blog.openJpg', {id:description.id}) }}"><img class="img-thumbnail" src="{{ asset(test) }}" alt=""/></a>
-{#                  <div class="container">#}
-{#                      <iframe src="{{ urlToScreen }}"></iframe>#}
-{#                  </div>#}
                 </div>
-{#                <div class="container">#}
-{#                    {% if screenSh is empty %}#}
-{#                        <p>pas d'images</p>#}
-{#                    {% else %}#}
-{#                        <img src="data:image/jpeg;base64,{{ screenSh }}"/>#}
-{#                    {% endif %}#}
-{#                </div>#}
     </div>
 </div>
 

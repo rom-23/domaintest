@@ -28,21 +28,6 @@ class BlogController extends AbstractController
         ]);
     }
 
-//    /**
-//     * @Route("/blog/iframe/{id}", name="blog.showIframe")
-//     * @param Article $article
-//     * @return Response
-//     * @throws Exception
-//     * Affiche le site dans une iframe
-//     */
-//    public function showIframe(Article $article)
-//    {
-//        return $this->render('blog/show.html.twig', [
-//            'urlToScreen' => $article->getContent(),
-//            'screenSh' => ""
-//        ]);
-//    }
-
     /**
      * @Route("/blog/bundle/{id}", name="blog.showBundle")
      * @param Article $article
@@ -55,21 +40,20 @@ class BlogController extends AbstractController
     {
         $urlToScreen = $article->getContent();
         $knpSnappy->setOption('height', 1024);
-        $knpSnappy->setOption('width', 800);
-        $knpSnappy->setOption('quality', 50);
-        $knpSnappy->setOption('disable-javascript', false);
-        //$imageGenerator->setOption('disable-local-file-access', true);
-        //$imageGenerator->setOption('disable-smart-width', false);
-        //$imageGenerator->setOption('stop-slow-scripts', true);
-        //$imageGenerator->setOption('crop-h', 100);
-        //$imageGenerator->setOption('crop-y', 100);
+        $knpSnappy->setOption('width', 968);
+        $knpSnappy->setOption('quality', 18);
+        $knpSnappy->setOption('disable-javascript', true);
+        //$knpSnappy->setOption('disable-local-file-access', true);
+        //$knpSnappy->setOption('disable-smart-width', false);
+        //$knpSnappy->setOption('stop-slow-scripts', true);
+        //$knpSnappy->setOption('crop-h', 200);
+        //$knpSnappy->setOption('crop-w', 400);
         $filepath = 'images/tempImgFile.jpg';
         $knpSnappy->generate($article->getContent(), $filepath, [], true);
         //$size = getimagesize('images/tempImgFile.jpg');
         return $this->render('blog/show.html.twig', [
             'test' => $filepath,
-            'description' => $article,
-            'urlToScreen' => 'http://' . $urlToScreen
+            'description' => $article
         ]);
     }
 
@@ -84,21 +68,20 @@ class BlogController extends AbstractController
     {
        // $request = $this->getRequest();
         $data = $request->request->get('search');
-        //dd($data);
         $knpSnappy->setOption('height', 1024);
-        $knpSnappy->setOption('width', 800);
-        $knpSnappy->setOption('quality', 50);
+        $knpSnappy->setOption('width', 968);
+        $knpSnappy->setOption('quality', 15);
         $knpSnappy->setOption('disable-javascript', false);
-        //$imageGenerator->setOption('disable-local-file-access', true);
-        //$imageGenerator->setOption('disable-smart-width', false);
-        //$imageGenerator->setOption('stop-slow-scripts', true);
-        //$imageGenerator->setOption('crop-h', 100);
-        //$imageGenerator->setOption('crop-y', 100);
+        //$knpSnappy->setOption('disable-local-file-access', true);
+        //$knpSnappy->setOption('disable-smart-width', false);
+        //$knpSnappy->setOption('stop-slow-scripts', true);
+        //$knpSnappy->setOption('crop-h', 100);
+        //$knpSnappy->setOption('crop-y', 100);
         $filepath = 'images/tempImgFile.jpg';
         $knpSnappy->generate($data, $filepath, [], true);
         //$size = getimagesize('images/tempImgFile.jpg');
         return $this->render('blog/quick.html.twig', [
-            'urlToScreen' => $filepath
+            'test' => $filepath
         ]);
     }
     /**
