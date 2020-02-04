@@ -15,7 +15,8 @@
                         {% for article in articles %}
                         <tr>
                             <td>{{ article.content | raw }}</td>
-                            <td><a class="btn btn-success btn-sm" id="screen" href="{{ path('blog.showBundle', {id:article.id}) }}">View</a>
+                            <td>
+                                <a class="btn btn-success btn-sm" id="screen" href="{{ path('blog.showBundle', {id:article.id}) }}">View</a>
 {#                                <a class="btn btn-success btn-sm" id="screen" href="{{ path('blog.openJpg', {id:article.id}) }}">open jpg</a>#}
                            </td>
                         </tr>
@@ -23,30 +24,35 @@
                     </table>
                 </div>
                 <div class="col-md-4">
-                    <div class="container p-3" style="background: rgba(230,230,230,0.7);">
-                        <p>Entrez une Url (sans espaces au debut): </p>
-                        <input class="form-control" type="text" id="url" placeholder="xvideos.com">
-                        <span id="msg" class="text-danger"></span> <br/>
-                        <img class="img-fluid" alt="" src="">
-                        <div class="container text-center pt-3">
-                            <button id="url2img" class="btn btn-success btn-sm">With Ajax</button>
-                        </div>
-                    </div>
-                    <div class="container p-5">
-                        <a href="https://github.com/rom-23/domaintest"> >>> Code du projet sur GitHub ;)</a>
-                    </div>
+
                     <div class="container p-3" style="background: rgba(230,230,230,0.7);">
                         <p>Entrez n'importe quelle Url :</p>
-                    <form method="post" action="{{ path('blog.showQuick')}}">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="xvideos.com" name ="search">
-                         <div class="container text-center pt-3">
-                             <p>( Meme principe que le bouton 'View', mais affiche le site avec le javascript, donc un peu plus long mais le rendu est différent... ) </p>
-                            <button type="submit" class="btn btn-success btn-sm">With Symfony</button>
+                        <form method="post" action="{{ path('blog.showQuick')}}">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="xvideos.com" name ="search">
+                                <div class="container text-center pt-3">
+                                    <p>( Meme principe que le bouton 'View', mais affiche le site avec le javascript, donc un peu plus long mais le rendu est plus précis.. ) </p>
+                                    <button type="submit" class="btn btn-success btn-sm">With Symfony</button>
+                                </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
                     </div>
+{#                    <div class="container p-3" style="background: rgba(230,230,230,0.7);">#}
+{#                        <p>Entrez une Url (sans espaces au debut): </p>#}
+{#                        <input class="form-control" type="text" id="url" placeholder="xvideos.com">#}
+{#                        <span id="msg" class="text-danger"></span> <br/>#}
+{#                        <img class="img-fluid" alt="" src="">#}
+{#                        <div class="container text-center pt-3">#}
+{#                            <button id="url2img" class="btn btn-success btn-sm">With Ajax and Google Api</button>#}
+{#                        </div>#}
+{#                    </div>#}
+                    <div class="container p-5">
+                        <a href="https://github.com/rom-23/domaintest"> >>> Code du projet sur GitHub</a>
+                        <p>
+                        <a href="https://www.mankier.com/1/wkhtmltoimage"> >>> Doc du Bundle wktohtmltoimage</a>
+                        </p>
+                    </div>
+
                 </div>
             </div>
         </div>
